@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  /*
+   * Future Genius / Gade Madam brand system
+   * Primary:   #1E4FA3 (Deep Royal Blue)     -> ink-900
+   * Secondary: #4FA3D1 (Educational Sky Blue) -> teal-400/500
+   * Accent:    #F4B942 (Warm Academic Yellow) -> gold-500 (use sparingly)
+   * Backgrounds/text stay light blue + white; no dark/neon/SaaS look.
+   */
+  --color-paper: #f4f8fc;
+  --color-paper-dim: #e5f1fa;
+
+  --color-ink-50: #e5f1fa;
+  --color-ink-100: #dceaf5;
+  --color-ink-200: #c3dcf0;
+  --color-ink-300: #a8cbe8;
+  --color-ink-500: #4fa3d1;
+  --color-ink-700: #2c5fa8;
+  --color-ink-800: #17408a;
+  --color-ink-900: #1e4fa3;
+  --color-ink-950: #0f2a52;
+
+  --color-gold-300: #fbe3a3;
+  --color-gold-400: #f7c965;
+  --color-gold-500: #f4b942;
+  --color-gold-600: #c6921f;
+  --color-gold-700: #8a5d12;
+
+  --color-teal-400: #7ec3e8;
+  --color-teal-500: #4fa3d1;
+  --color-teal-600: #2e7ea8;
+  --color-teal-700: #1f5a78;
+
+  --color-ash-500: #52677a;
+  --color-ash-700: #33475c;
+  --color-ash-900: #17324d;
+
+  --shadow-soft: 0 1px 2px rgba(15, 42, 82, 0.04), 0 12px 32px -12px rgba(15, 42, 82, 0.16);
+  --shadow-lift: 0 20px 48px -16px rgba(15, 42, 82, 0.28);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-paper text-ash-900 font-sans antialiased;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display text-ink-900;
+  }
+  ::selection {
+    @apply bg-gold-300/60;
+  }
+}
+
+@layer utilities {
+  .container-page {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10;
+  }
+
+  .section-pad {
+    @apply py-16 sm:py-20 lg:py-28;
+  }
+
+  .card-surface {
+    @apply bg-white rounded-3xl shadow-[var(--shadow-soft)] border border-ink-900/[0.05];
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-ink-900 px-7 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-ink-800 hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-gold-500 px-7 py-3.5 text-sm font-semibold text-ink-950 transition-all duration-300 hover:bg-gold-400 hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-ink-900/15 bg-white/70 px-7 py-3.5 text-sm font-semibold text-ink-900 backdrop-blur transition-all duration-300 hover:border-ink-900/30 hover:-translate-y-0.5;
+  }
+
+  .kicker {
+    @apply inline-flex items-center gap-2 rounded-full bg-ink-900/[0.05] px-4 py-1.5 text-[13px] font-semibold text-ink-700;
+  }
+
+  .fade-up {
+    animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .animate-in {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .animate-in.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
